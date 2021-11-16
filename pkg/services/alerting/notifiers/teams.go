@@ -48,7 +48,7 @@ func NewTeamsNotifier(model *models.AlertNotification, _ alerting.GetDecryptedVa
 type TeamsNotifier struct {
 	NotifierBase
 	URL string
-	log log.Logger
+	log log.MultiLoggers
 }
 
 // Notify send an alert notification to Microsoft teams.

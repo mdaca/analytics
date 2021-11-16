@@ -59,7 +59,7 @@ type TelegramNotifier struct {
 	BotToken    string
 	ChatID      string
 	UploadImage bool
-	log         log.Logger
+	log         log.MultiLoggers
 }
 
 // NewTelegramNotifier is the constructor for the Telegram notifier

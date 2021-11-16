@@ -14,7 +14,7 @@ const (
 	httpContentLengthTagKey = "http.content_length"
 )
 
-func TracingMiddleware(logger log.Logger) httpclient.Middleware {
+func TracingMiddleware(logger log.MultiLoggers) httpclient.Middleware {
 	return httpclient.NamedMiddlewareFunc(TracingMiddlewareName, func(opts httpclient.Options, next http.RoundTripper) http.RoundTripper {
 		return httpclient.RoundTripperFunc(func(req *http.Request) (*http.Response, error) {
 			span, ctx := opentracing.StartSpanFromContext(req.Context(), "HTTP Outgoing Request")

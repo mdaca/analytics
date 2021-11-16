@@ -165,7 +165,7 @@ func splitTagSettings(input string) map[string]string {
 }
 
 type jaegerLogWrapper struct {
-	logger log.Logger
+	logger log.MultiLoggers
 }
 
 func (jlw *jaegerLogWrapper) Error(msg string) {

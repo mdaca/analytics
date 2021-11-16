@@ -62,7 +62,7 @@ import (
 )
 
 type HTTPServer struct {
-	log         log.Logger
+	log         log.MultiLoggers
 	web         *web.Mux
 	context     context.Context
 	httpSrv     *http.Server

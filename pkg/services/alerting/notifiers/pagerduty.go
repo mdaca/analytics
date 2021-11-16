@@ -103,7 +103,7 @@ type PagerdutyNotifier struct {
 	Severity         string
 	AutoResolve      bool
 	MessageInDetails bool
-	log              log.Logger
+	log              log.MultiLoggers
 }
 
 // buildEventPayload is responsible for building the event payload body for sending to Pagerduty v2 API

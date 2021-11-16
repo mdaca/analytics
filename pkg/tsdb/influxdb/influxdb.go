@@ -25,7 +25,7 @@ import (
 type Service struct {
 	QueryParser    *InfluxdbQueryParser
 	ResponseParser *ResponseParser
-	glog           log.Logger
+	glog           log.MultiLoggers
 
 	im instancemgmt.InstanceManager
 }

@@ -17,7 +17,7 @@ package example
 
 // Service service is the service responsible for X, Y and Z.
 type Service struct {
-    logger   log.Logger
+    logger   log.MultiLoggers
     cfg      *setting.Cfg
     sqlStore *sqlstore.SQLStore
 }

@@ -35,7 +35,7 @@ type keySetJWKS struct {
 
 type keySetHTTP struct {
 	url             string
-	log             log.Logger
+	log             log.MultiLoggers
 	client          *http.Client
 	cache           *remotecache.RemoteCache
 	cacheKey        string

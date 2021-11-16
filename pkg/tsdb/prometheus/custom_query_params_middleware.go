@@ -13,7 +13,7 @@ const (
 	customQueryParametersKey            = "customQueryParameters"
 )
 
-func customQueryParametersMiddleware(logger log.Logger) sdkhttpclient.Middleware {
+func customQueryParametersMiddleware(logger log.MultiLoggers) sdkhttpclient.Middleware {
 	return sdkhttpclient.NamedMiddlewareFunc(customQueryParametersMiddlewareName, func(opts sdkhttpclient.Options, next http.RoundTripper) http.RoundTripper {
 		customQueryParamsVal, exists := opts.CustomOptions[customQueryParametersKey]
 		if !exists {

@@ -67,7 +67,7 @@ type ThreemaNotifier struct {
 	GatewayID   string
 	RecipientID string
 	APISecret   string
-	log         log.Logger
+	log         log.MultiLoggers
 }
 
 // NewThreemaNotifier is the constructor for the Threema notifier

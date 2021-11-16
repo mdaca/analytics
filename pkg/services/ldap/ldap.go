@@ -43,7 +43,7 @@ type IServer interface {
 type Server struct {
 	Config     *ServerConfig
 	Connection IConnection
-	log        log.Logger
+	log        log.MultiLoggers
 }
 
 // Bind authenticates the connection with the LDAP server

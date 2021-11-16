@@ -20,7 +20,7 @@ import (
 
 type Service struct {
 	im   instancemgmt.InstanceManager
-	tlog log.Logger
+	tlog log.MultiLoggers
 }
 
 func ProvideService(httpClientProvider httpclient.Provider, registrar plugins.CoreBackendRegistrar) (*Service, error) {

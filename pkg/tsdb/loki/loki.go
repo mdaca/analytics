@@ -31,7 +31,7 @@ import (
 type Service struct {
 	intervalCalculator intervalv2.Calculator
 	im                 instancemgmt.InstanceManager
-	plog               log.Logger
+	plog               log.MultiLoggers
 }
 
 func ProvideService(httpClientProvider httpclient.Provider, registrar plugins.CoreBackendRegistrar) (*Service, error) {

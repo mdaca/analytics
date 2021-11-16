@@ -202,7 +202,7 @@ type SlackNotifier struct {
 	mentionChannel string
 	token          string
 	upload         bool
-	log            log.Logger
+	log            log.MultiLoggers
 }
 
 // Notify sends an alert notification to Slack.

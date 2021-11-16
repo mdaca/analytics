@@ -48,7 +48,7 @@ func ProvideService(cfg *setting.Cfg, registrar plugins.CoreBackendRegistrar) (*
 
 type Service struct {
 	cfg       *setting.Cfg
-	logger    log.Logger
+	logger    log.MultiLoggers
 	scenarios map[string]*Scenario
 	frame     *data.Frame
 	queryMux  *datasource.QueryTypeMux

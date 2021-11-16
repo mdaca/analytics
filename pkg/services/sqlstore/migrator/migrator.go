@@ -17,7 +17,7 @@ type Migrator struct {
 	x          *xorm.Engine
 	Dialect    Dialect
 	migrations []Migration
-	Logger     log.Logger
+	Logger     log.MultiLoggers
 	Cfg        *setting.Cfg
 }
 

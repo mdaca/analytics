@@ -86,7 +86,7 @@ type WebhookNotifier struct {
 	User       string
 	Password   string
 	HTTPMethod string
-	log        log.Logger
+	log        log.MultiLoggers
 }
 
 // WebhookNotifierBody is the body of webhook

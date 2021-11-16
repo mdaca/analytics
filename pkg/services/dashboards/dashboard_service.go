@@ -63,7 +63,7 @@ type dashboardServiceImpl struct {
 	dashboardStore dashboards.Store
 	orgId          int64
 	user           *models.SignedInUser
-	log            log.Logger
+	log            log.MultiLoggers
 }
 
 func (dr *dashboardServiceImpl) GetProvisionedDashboardData(name string) ([]*models.DashboardProvisioning, error) {

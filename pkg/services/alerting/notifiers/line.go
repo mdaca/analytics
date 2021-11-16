@@ -55,7 +55,7 @@ func NewLINENotifier(model *models.AlertNotification, fn alerting.GetDecryptedVa
 type LineNotifier struct {
 	NotifierBase
 	Token string
-	log   log.Logger
+	log   log.MultiLoggers
 }
 
 // Notify send an alert notification to LINE

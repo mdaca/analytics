@@ -30,5 +30,5 @@ type DBstore struct {
 	// default alert definiiton interval
 	DefaultInterval time.Duration
 	SQLStore        *sqlstore.SQLStore
-	Logger          log.Logger
+	Logger          log.MultiLoggers
 }

@@ -154,7 +154,7 @@ func (s *Service) QueryData(ctx context.Context, req *backend.QueryDataRequest) 
 }
 
 type mysqlQueryResultTransformer struct {
-	log log.Logger
+	log log.MultiLoggers
 }
 
 func (t *mysqlQueryResultTransformer) TransformQueryError(err error) error {

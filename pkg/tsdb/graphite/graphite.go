@@ -30,7 +30,7 @@ import (
 )
 
 type Service struct {
-	logger log.Logger
+	logger log.MultiLoggers
 	im     instancemgmt.InstanceManager
 }
 

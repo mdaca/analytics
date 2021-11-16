@@ -52,7 +52,7 @@ type Uploader struct {
 	KeyFile             string
 	Bucket              string
 	path                string
-	log                 log.Logger
+	log                 log.MultiLoggers
 	enableSignedURLs    bool
 	signedURLExpiration time.Duration
 }

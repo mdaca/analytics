@@ -62,7 +62,7 @@ type httpClient interface {
 }
 
 type logWrapper struct {
-	logger glog.Logger
+	logger glog.MultiLoggers
 }
 
 // Write writes log messages as bytes from proxy
