@@ -260,7 +260,7 @@ func ReadLoggingConfig(modes []string, logsPath string, cfg *ini.File) error {
 		case "syslog":
 			sysLogHandler := NewSyslog(sec, format)
 			loggersToClose = append(loggersToClose, sysLogHandler)
-			handler.val = sysLogHandler
+			handler.val = sysLogHandler.logger
 		}
 		if handler.val == nil {
 			panic(fmt.Sprintf("Handler is uninitialized for mode %q", mode))

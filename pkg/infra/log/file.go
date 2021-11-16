@@ -39,6 +39,7 @@ type FileLogWriter struct {
 
 	Rotate    bool
 	startLock sync.Mutex
+	logger    log.Logger
 }
 
 // an *os.File writer with locker.
@@ -85,7 +86,9 @@ func NewFileWriter() *FileLogWriter {
 }
 
 func (w *FileLogWriter) Log(keyvals ...interface{}) error {
-	data := w.Format(keyvals...)
+	if err := w.logger.Log(keyvals); err != nil {
+		return err
+	}
 	w.docheck(len(data))
 	_, err := w.mw.Write(data)
 	return err
@@ -95,7 +98,12 @@ func (w *FileLogWriter) Init() error {
 	if len(w.Filename) == 0 {
 		return errors.New("config must have filename")
 	}
-	return w.StartLogger()
+	if err := w.StartLogger(); err != nil {
+		return err
+	}
+	w.logger = log.NewLogfmtLogger(log.NewSyncWriter(w.mw))
+	return nil
+
 }
 
 // start file logger. create log file and set to locker-inside file writer.
