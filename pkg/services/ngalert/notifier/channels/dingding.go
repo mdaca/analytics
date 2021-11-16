@@ -52,7 +52,7 @@ type DingDingNotifier struct {
 	URL     string
 	Message string
 	tmpl    *template.Template
-	log     log.Logger
+	log     log.MultiLoggers
 }
 
 // Notify sends the alert notification to dingding.

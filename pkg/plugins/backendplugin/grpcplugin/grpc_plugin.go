@@ -25,14 +25,14 @@ type grpcPlugin struct {
 	clientFactory  func() *plugin.Client
 	client         *plugin.Client
 	pluginClient   pluginClient
-	logger         log.Logger
+	logger         log.MultiLoggers
 	mutex          sync.RWMutex
 	decommissioned bool
 }
 
 // newPlugin allocates and returns a new gRPC (external) backendplugin.Plugin.
 func newPlugin(descriptor PluginDescriptor) backendplugin.PluginFactoryFunc {
-	return func(pluginID string, logger log.Logger, env []string) (backendplugin.Plugin, error) {
+	return func(pluginID string, logger log.MultiLoggers, env []string) (backendplugin.Plugin, error) {
 		return &grpcPlugin{
 			descriptor: descriptor,
 			logger:     logger,
@@ -47,7 +47,7 @@ func (p *grpcPlugin) PluginID() string {
 	return p.descriptor.pluginID
 }
 
-func (p *grpcPlugin) Logger() log.Logger {
+func (p *grpcPlugin) Logger() log.MultiLoggers {
 	return p.logger
 }
 

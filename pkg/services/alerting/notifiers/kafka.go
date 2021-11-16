@@ -65,7 +65,7 @@ type KafkaNotifier struct {
 	NotifierBase
 	Endpoint string
 	Topic    string
-	log      log.Logger
+	log      log.MultiLoggers
 }
 
 // Notify sends the alert notification.

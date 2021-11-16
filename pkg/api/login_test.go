@@ -67,7 +67,7 @@ func getBody(resp *httptest.ResponseRecorder) (string, error) {
 }
 
 type FakeLogger struct {
-	log.Logger
+	log.MultiLoggers
 }
 
 func (fl *FakeLogger) Debug(testMessage string, ctx ...interface{}) {

@@ -92,7 +92,7 @@ func newNotificationService(renderService rendering.Service, decryptFn GetDecryp
 }
 
 type notificationService struct {
-	log           log.Logger
+	log           log.MultiLoggers
 	renderService rendering.Service
 	decryptFn     GetDecryptedValueFn
 }

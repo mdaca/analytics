@@ -16,11 +16,11 @@ func Provision(ctx context.Context, configDirectory string, encryptionService en
 
 // NotificationProvisioner is responsible for provsioning alert notifiers
 type NotificationProvisioner struct {
-	log         log.Logger
+	log         log.MultiLoggers
 	cfgProvider *configReader
 }
 
-func newNotificationProvisioner(encryptionService encryption.Service, log log.Logger) NotificationProvisioner {
+func newNotificationProvisioner(encryptionService encryption.Service, log log.MultiLoggers) NotificationProvisioner {
 	return NotificationProvisioner{
 		log: log,
 		cfgProvider: &configReader{

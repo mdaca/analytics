@@ -250,7 +250,7 @@ func generateImageCaption(evalContext *alerting.EvalContext, ruleURL string, met
 	return message
 }
 
-func appendIfPossible(tlog log.Logger, message string, extra string, sizeLimit int) string {
+func appendIfPossible(tlog log.MultiLoggers, message string, extra string, sizeLimit int) string {
 	if len(extra)+len(message) <= sizeLimit {
 		return message + extra
 	}

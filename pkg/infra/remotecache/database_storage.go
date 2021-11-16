@@ -14,7 +14,7 @@ const databaseCacheType = "database"
 
 type databaseCache struct {
 	SQLStore *sqlstore.SQLStore
-	log      log.Logger
+	log      log.MultiLoggers
 }
 
 func newDatabaseCache(sqlstore *sqlstore.SQLStore) *databaseCache {

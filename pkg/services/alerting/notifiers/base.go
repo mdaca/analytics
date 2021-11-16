@@ -24,7 +24,7 @@ type NotifierBase struct {
 	DisableResolveMessage bool
 	Frequency             time.Duration
 
-	log log.Logger
+	log log.MultiLoggers
 }
 
 // NewNotifierBase returns a new `NotifierBase`.

@@ -103,7 +103,7 @@ func (s *Service) testStreamHandler(rw http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func createJSONHandler(logger log.Logger) http.Handler {
+func createJSONHandler(logger log.MultiLoggers) http.Handler {
 	return http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 		logger.Debug("Received resource call", "url", req.URL.String(), "method", req.Method)
 

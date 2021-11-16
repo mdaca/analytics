@@ -187,7 +187,7 @@ func TestSlackNotifier(t *testing.T) {
 			t.Cleanup(func() {
 				sendSlackRequest = origSendSlackRequest
 			})
-			sendSlackRequest = func(request *http.Request, log log.Logger) error {
+			sendSlackRequest = func(request *http.Request, log log.MultiLoggers) error {
 				t.Helper()
 				defer func() {
 					_ = request.Body.Close()

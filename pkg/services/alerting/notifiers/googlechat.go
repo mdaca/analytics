@@ -50,7 +50,7 @@ func newGoogleChatNotifier(model *models.AlertNotification, _ alerting.GetDecryp
 type GoogleChatNotifier struct {
 	NotifierBase
 	URL string
-	log log.Logger
+	log log.MultiLoggers
 }
 
 /**

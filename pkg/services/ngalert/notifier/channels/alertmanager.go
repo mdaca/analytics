@@ -67,7 +67,7 @@ type AlertmanagerNotifier struct {
 	urls              []*url.URL
 	basicAuthUser     string
 	basicAuthPassword string
-	logger            log.Logger
+	logger            log.MultiLoggers
 }
 
 // Notify sends alert notifications to Alertmanager.

@@ -22,7 +22,7 @@ type WebhookNotifier struct {
 	Password   string
 	HTTPMethod string
 	MaxAlerts  int
-	log        log.Logger
+	log        log.MultiLoggers
 	tmpl       *template.Template
 	orgID      int64
 }

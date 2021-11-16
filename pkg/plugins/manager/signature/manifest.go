@@ -99,7 +99,7 @@ func readPluginManifest(body []byte) (*pluginManifest, error) {
 	return manifest, nil
 }
 
-func Calculate(mlog log.Logger, plugin *plugins.Plugin) (plugins.Signature, error) {
+func Calculate(mlog log.MultiLoggers, plugin *plugins.Plugin) (plugins.Signature, error) {
 	if plugin.IsCorePlugin() {
 		return plugins.Signature{
 			Status: plugins.SignatureInternal,
@@ -213,7 +213,7 @@ func Calculate(mlog log.Logger, plugin *plugins.Plugin) (plugins.Signature, erro
 	}, nil
 }
 
-func verifyHash(mlog log.Logger, pluginID string, path string, hash string) error {
+func verifyHash(mlog log.MultiLoggers, pluginID string, path string, hash string) error {
 	// nolint:gosec
 	// We can ignore the gosec G304 warning on this one because `path` is based
 	// on the path provided in a manifest file for a plugin and not user input.

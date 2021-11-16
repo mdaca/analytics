@@ -613,7 +613,7 @@ func (l *fakeLoader) LoadWithFactory(path string, factory backendplugin.PluginFa
 
 type fakePluginClient struct {
 	pluginID       string
-	logger         log.Logger
+	logger         log.MultiLoggers
 	startCount     int
 	stopCount      int
 	managed        bool
@@ -632,7 +632,7 @@ func (tp *fakePluginClient) PluginID() string {
 	return tp.pluginID
 }
 
-func (tp *fakePluginClient) Logger() log.Logger {
+func (tp *fakePluginClient) Logger() log.MultiLoggers {
 	return tp.logger
 }
 
@@ -734,7 +734,7 @@ func (t *testPluginRequestValidator) Validate(string, *http.Request) error {
 }
 
 type fakeLogger struct {
-	log.Logger
+	log.MultiLoggers
 }
 
 func (tl fakeLogger) Info(msg string, ctx ...interface{}) {

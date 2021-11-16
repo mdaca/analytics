@@ -81,7 +81,7 @@ type HipChatNotifier struct {
 	URL    string
 	APIKey string
 	RoomID string
-	log    log.Logger
+	log    log.MultiLoggers
 }
 
 // Notify sends an alert notification to HipChat

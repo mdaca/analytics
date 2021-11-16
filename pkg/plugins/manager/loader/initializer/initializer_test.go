@@ -167,7 +167,7 @@ func TestInitializer_InitializeWithFactory(t *testing.T) {
 
 		factoryInvoked := false
 
-		factory := backendplugin.PluginFactoryFunc(func(pluginID string, logger log.Logger, env []string) (backendplugin.Plugin, error) {
+		factory := backendplugin.PluginFactoryFunc(func(pluginID string, logger log.MultiLoggers, env []string) (backendplugin.Plugin, error) {
 			factoryInvoked = true
 			return testPlugin{}, nil
 		})

@@ -248,7 +248,7 @@ type PushoverNotifier struct {
 	AlertingSound    string
 	OKSound          string
 	Upload           bool
-	log              log.Logger
+	log              log.MultiLoggers
 }
 
 // Notify sends a alert notification to Pushover

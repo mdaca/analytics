@@ -19,7 +19,7 @@ func ProvideService(sqlStore *sqlstore.SQLStore) *ServerLockService {
 // and execute an function if the server was granted the lock
 type ServerLockService struct {
 	SQLStore *sqlstore.SQLStore
-	log      log.Logger
+	log      log.MultiLoggers
 }
 
 // LockAndExecute try to create a lock for this server and only executes the

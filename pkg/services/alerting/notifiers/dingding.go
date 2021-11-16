@@ -68,7 +68,7 @@ type DingDingNotifier struct {
 	NotifierBase
 	MsgType string
 	URL     string
-	log     log.Logger
+	log     log.MultiLoggers
 }
 
 // Notify sends the alert notification to dingding.

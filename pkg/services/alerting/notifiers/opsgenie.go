@@ -123,7 +123,7 @@ type OpsGenieNotifier struct {
 	AutoClose        bool
 	OverridePriority bool
 	SendTagsAs       string
-	log              log.Logger
+	log              log.MultiLoggers
 }
 
 // Notify sends an alert notification to OpsGenie.

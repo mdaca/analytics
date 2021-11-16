@@ -231,7 +231,7 @@ type SocialConnector interface {
 
 type SocialBase struct {
 	*oauth2.Config
-	log            log.Logger
+	log            log.MultiLoggers
 	allowSignup    bool
 	allowedDomains []string
 }

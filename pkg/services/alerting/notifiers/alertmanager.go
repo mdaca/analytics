@@ -81,7 +81,7 @@ type AlertmanagerNotifier struct {
 	URL               []string
 	BasicAuthUser     string
 	BasicAuthPassword string
-	log               log.Logger
+	log               log.MultiLoggers
 }
 
 // ShouldNotify returns true if the notifiers should be used depending on state
