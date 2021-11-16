@@ -182,7 +182,7 @@ func AddChangePasswordLink() bool {
 // TODO move all global vars to this struct
 type Cfg struct {
 	Raw    *ini.File
-	Logger log.Logger
+	Logger log.MultiLoggers
 
 	// HTTP Server Settings
 	CertFile         string
@@ -1110,7 +1110,7 @@ func (cfg *Cfg) LogConfigSources() {
 
 type DynamicSection struct {
 	section *ini.Section
-	Logger  log.Logger
+	Logger  log.MultiLoggers
 }
 
 // Key dynamically overrides keys with environment variables.

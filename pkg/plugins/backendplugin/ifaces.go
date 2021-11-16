@@ -10,7 +10,7 @@ import (
 // Plugin is the backend plugin interface.
 type Plugin interface {
 	PluginID() string
-	Logger() log.Logger
+	Logger() log.MultiLoggers
 	Start(ctx context.Context) error
 	Stop(ctx context.Context) error
 	IsManaged() bool
