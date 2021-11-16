@@ -21,7 +21,7 @@ type EmailNotifier struct {
 	Addresses   []string
 	SingleEmail bool
 	Message     string
-	log         log.Logger
+	log         log.MultiLoggers
 	tmpl        *template.Template
 }
 

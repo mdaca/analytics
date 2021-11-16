@@ -78,7 +78,7 @@ type httpCfg struct {
 
 // sendHTTPRequest sends an HTTP request.
 // Stubbable by tests.
-var sendHTTPRequest = func(ctx context.Context, url *url.URL, cfg httpCfg, logger log.Logger) ([]byte, error) {
+var sendHTTPRequest = func(ctx context.Context, url *url.URL, cfg httpCfg, logger log.MultiLoggers) ([]byte, error) {
 	var reader io.Reader
 	if len(cfg.body) > 0 {
 		reader = bytes.NewReader(cfg.body)
@@ -132,7 +132,7 @@ var sendHTTPRequest = func(ctx context.Context, url *url.URL, cfg httpCfg, logge
 	return respBody, nil
 }
 
-func joinUrlPath(base, additionalPath string, logger log.Logger) string {
+func joinUrlPath(base, additionalPath string, logger log.MultiLoggers) string {
 	u, err := url.Parse(base)
 	if err != nil {
 		logger.Debug("failed to parse URL while joining URL", "url", base, "err", err.Error())

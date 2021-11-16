@@ -39,11 +39,11 @@ const (
 )
 
 type LotexAM struct {
-	log log.Logger
+	log log.MultiLoggers
 	*AlertingProxy
 }
 
-func NewLotexAM(proxy *AlertingProxy, log log.Logger) *LotexAM {
+func NewLotexAM(proxy *AlertingProxy, log log.MultiLoggers) *LotexAM {
 	return &LotexAM{
 		log:           log,
 		AlertingProxy: proxy,

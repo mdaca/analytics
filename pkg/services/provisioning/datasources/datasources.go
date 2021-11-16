@@ -27,11 +27,11 @@ func Provision(ctx context.Context, configDirectory string) error {
 // DatasourceProvisioner is responsible for provisioning datasources based on
 // configuration read by the `configReader`
 type DatasourceProvisioner struct {
-	log         log.Logger
+	log         log.MultiLoggers
 	cfgProvider *configReader
 }
 
-func newDatasourceProvisioner(log log.Logger) DatasourceProvisioner {
+func newDatasourceProvisioner(log log.MultiLoggers) DatasourceProvisioner {
 	return DatasourceProvisioner{
 		log:         log,
 		cfgProvider: &configReader{log: log},

@@ -21,7 +21,7 @@ type KafkaNotifier struct {
 	*Base
 	Endpoint string
 	Topic    string
-	log      log.Logger
+	log      log.MultiLoggers
 	tmpl     *template.Template
 }
 

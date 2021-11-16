@@ -18,7 +18,7 @@ import (
 type AdminSrv struct {
 	scheduler Scheduler
 	store     store.AdminConfigurationStore
-	log       log.Logger
+	log       log.MultiLoggers
 }
 
 func (srv AdminSrv) RouteGetAlertmanagers(c *models.ReqContext) response.Response {

@@ -12,7 +12,7 @@ import (
 // AnnotationCleanupService is responsible for cleaning old annotations.
 type AnnotationCleanupService struct {
 	batchSize int64
-	log       log.Logger
+	log       log.MultiLoggers
 }
 
 const (

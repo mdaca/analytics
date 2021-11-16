@@ -402,7 +402,7 @@ func (h *ContextHandler) initContextWithRenderAuth(reqContext *models.ReqContext
 	return true
 }
 
-func logUserIn(auth *authproxy.AuthProxy, username string, logger log.Logger, ignoreCache bool) (int64, error) {
+func logUserIn(auth *authproxy.AuthProxy, username string, logger log.MultiLoggers, ignoreCache bool) (int64, error) {
 	logger.Debug("Trying to log user in", "username", username, "ignoreCache", ignoreCache)
 	// Try to log in user via various providers
 	id, err := auth.Login(logger, ignoreCache)

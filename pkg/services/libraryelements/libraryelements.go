@@ -36,7 +36,7 @@ type LibraryElementService struct {
 	Cfg           *setting.Cfg
 	SQLStore      *sqlstore.SQLStore
 	RouteRegister routing.RouteRegister
-	log           log.Logger
+	log           log.MultiLoggers
 }
 
 // CreateElement creates a Library Element.

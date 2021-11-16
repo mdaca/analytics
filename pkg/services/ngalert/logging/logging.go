@@ -8,11 +8,11 @@ import (
 
 // GoKitWrapper wraps around the grafana-specific logger to make a compatible logger for go-kit.
 type GoKitWrapper struct {
-	logger glog.Logger
+	logger glog.MultiLoggers
 }
 
 // NewWrapper creates a new go-kit wrapper for a grafana-specific logger
-func NewWrapper(l glog.Logger) *GoKitWrapper {
+func NewWrapper(l glog.MultiLoggers) *GoKitWrapper {
 	return &GoKitWrapper{logger: l}
 }
 

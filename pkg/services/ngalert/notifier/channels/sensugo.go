@@ -17,7 +17,7 @@ import (
 
 type SensuGoNotifier struct {
 	*Base
-	log  log.Logger
+	log  log.MultiLoggers
 	tmpl *template.Template
 
 	URL       string

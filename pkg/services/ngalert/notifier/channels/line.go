@@ -43,7 +43,7 @@ func NewLineNotifier(model *NotificationChannelConfig, t *template.Template, fn 
 type LineNotifier struct {
 	*Base
 	Token string
-	log   log.Logger
+	log   log.MultiLoggers
 	tmpl  *template.Template
 }
 

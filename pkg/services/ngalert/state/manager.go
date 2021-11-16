@@ -22,7 +22,7 @@ import (
 var ResendDelay = 30 * time.Second
 
 type Manager struct {
-	log     log.Logger
+	log     log.MultiLoggers
 	metrics *metrics.State
 
 	cache       *cache
@@ -33,7 +33,7 @@ type Manager struct {
 	instanceStore store.InstanceStore
 }
 
-func NewManager(logger log.Logger, metrics *metrics.State, externalURL *url.URL, ruleStore store.RuleStore, instanceStore store.InstanceStore) *Manager {
+func NewManager(logger log.MultiLoggers, metrics *metrics.State, externalURL *url.URL, ruleStore store.RuleStore, instanceStore store.InstanceStore) *Manager {
 	manager := &Manager{
 		cache:         newCache(logger, metrics, externalURL),
 		quit:          make(chan struct{}),

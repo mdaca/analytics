@@ -16,7 +16,7 @@ type ruleReader interface {
 
 type defaultRuleReader struct {
 	sync.RWMutex
-	log log.Logger
+	log log.MultiLoggers
 }
 
 func newRuleReader() *defaultRuleReader {

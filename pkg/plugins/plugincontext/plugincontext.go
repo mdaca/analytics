@@ -41,7 +41,7 @@ type Provider struct {
 	DataSourceCache       datasources.CacheService
 	SecretsService        secrets.Service
 	PluginSettingsService *pluginsettings.Service
-	logger                log.Logger
+	logger                log.MultiLoggers
 }
 
 // Get allows getting plugin context by its ID. If datasourceUID is not empty string

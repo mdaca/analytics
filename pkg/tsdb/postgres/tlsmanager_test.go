@@ -280,7 +280,7 @@ func resetValidateCertFilePaths() {
 
 func mockWriteCertFile() {
 	writeCertFileCallNum = 0
-	writeCertFileFunc = func(logger log.Logger, fileContent string, generatedFilePath string) error {
+	writeCertFileFunc = func(logger log.MultiLoggers, fileContent string, generatedFilePath string) error {
 		writeCertFileCallNum++
 		return nil
 	}

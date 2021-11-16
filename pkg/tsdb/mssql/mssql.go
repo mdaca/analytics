@@ -179,7 +179,7 @@ func generateConnectionString(dsInfo sqleng.DataSourceInfo) (string, error) {
 }
 
 type mssqlQueryResultTransformer struct {
-	log log.Logger
+	log log.MultiLoggers
 }
 
 func (t *mssqlQueryResultTransformer) TransformQueryError(err error) error {

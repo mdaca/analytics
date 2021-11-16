@@ -55,7 +55,7 @@ type configsV0 struct {
 
 type configsV1 struct {
 	configVersion
-	log log.Logger
+	log log.MultiLoggers
 
 	Datasources       []*upsertDataSourceFromConfigV1 `json:"datasources" yaml:"datasources"`
 	DeleteDatasources []*deleteDatasourceConfigV1     `json:"deleteDatasources" yaml:"deleteDatasources"`

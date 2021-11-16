@@ -40,7 +40,7 @@ type dashboardGuardianImpl struct {
 	orgId  int64
 	acl    []*models.DashboardAclInfoDTO
 	teams  []*models.TeamDTO
-	log    log.Logger
+	log    log.MultiLoggers
 	ctx    context.Context
 }
 

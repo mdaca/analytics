@@ -60,7 +60,7 @@ type schedule struct {
 	// message from stopApplied is handled.
 	stopAppliedFunc func(models.AlertRuleKey)
 
-	log log.Logger
+	log log.MultiLoggers
 
 	evaluator eval.Evaluator
 
@@ -90,7 +90,7 @@ type schedule struct {
 type SchedulerCfg struct {
 	C                       clock.Clock
 	BaseInterval            time.Duration
-	Logger                  log.Logger
+	Logger                  log.MultiLoggers
 	EvalAppliedFunc         func(models.AlertRuleKey, time.Time)
 	MaxAttempts             int64
 	StopAppliedFunc         func(models.AlertRuleKey)

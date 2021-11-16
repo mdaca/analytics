@@ -19,7 +19,7 @@ import (
 
 type configReader struct {
 	encryptionService encryption.Service
-	log               log.Logger
+	log               log.MultiLoggers
 }
 
 func (cr *configReader) readConfig(ctx context.Context, path string) ([]*notificationsAsConfig, error) {

@@ -88,7 +88,7 @@ func (i *Initializer) Initialize(p *plugins.Plugin) error {
 		if p.IsRenderer() {
 			cmd := plugins.ComposeRendererStartCommand()
 			backendFactory = grpcplugin.NewRendererPlugin(p.ID, filepath.Join(p.PluginDir, cmd),
-				func(pluginID string, renderer pluginextensionv2.RendererPlugin, logger log.Logger) error {
+				func(pluginID string, renderer pluginextensionv2.RendererPlugin, logger log.MultiLoggers) error {
 					p.Renderer = renderer
 					return nil
 				},

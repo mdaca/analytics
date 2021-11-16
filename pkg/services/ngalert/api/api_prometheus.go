@@ -23,7 +23,7 @@ import (
 )
 
 type PrometheusSrv struct {
-	log     log.Logger
+	log     log.MultiLoggers
 	manager *state.Manager
 	store   store.RuleStore
 }

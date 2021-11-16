@@ -36,7 +36,7 @@ type PagerdutyNotifier struct {
 	Group         string
 	Summary       string
 	tmpl          *template.Template
-	log           log.Logger
+	log           log.MultiLoggers
 }
 
 // NewPagerdutyNotifier is the constructor for the PagerDuty notifier

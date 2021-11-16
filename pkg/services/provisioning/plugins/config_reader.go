@@ -17,11 +17,11 @@ type configReader interface {
 }
 
 type configReaderImpl struct {
-	log         log.Logger
+	log         log.MultiLoggers
 	pluginStore plugins.Store
 }
 
-func newConfigReader(logger log.Logger, pluginStore plugins.Store) configReader {
+func newConfigReader(logger log.MultiLoggers, pluginStore plugins.Store) configReader {
 	return &configReaderImpl{log: logger, pluginStore: pluginStore}
 }
 

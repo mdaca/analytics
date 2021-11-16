@@ -56,7 +56,7 @@ func removePrivateItems(kv template.KV) template.KV {
 	return kv
 }
 
-func extendAlert(alert template.Alert, externalURL string, logger log.Logger) *ExtendedAlert {
+func extendAlert(alert template.Alert, externalURL string, logger log.MultiLoggers) *ExtendedAlert {
 	// remove "private" annotations & labels so they don't show up in the template
 	extended := &ExtendedAlert{
 		Status:       alert.Status,
@@ -107,7 +107,7 @@ func extendAlert(alert template.Alert, externalURL string, logger log.Logger) *E
 	return extended
 }
 
-func ExtendData(data *template.Data, logger log.Logger) *ExtendedData {
+func ExtendData(data *template.Data, logger log.MultiLoggers) *ExtendedData {
 	alerts := []ExtendedAlert{}
 
 	for _, alert := range data.Alerts {
@@ -128,7 +128,7 @@ func ExtendData(data *template.Data, logger log.Logger) *ExtendedData {
 	return extended
 }
 
-func TmplText(ctx context.Context, tmpl *template.Template, alerts []*types.Alert, l log.Logger, tmplErr *error) (func(string) string, *ExtendedData) {
+func TmplText(ctx context.Context, tmpl *template.Template, alerts []*types.Alert, l log.MultiLoggers, tmplErr *error) (func(string) string, *ExtendedData) {
 	promTmplData := notify.GetTemplateData(ctx, tmpl, alerts, gokit_log.NewLogfmtLogger(logging.NewWrapper(l)))
 	data := ExtendData(promTmplData, l)
 

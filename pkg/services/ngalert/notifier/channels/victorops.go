@@ -55,7 +55,7 @@ type VictoropsNotifier struct {
 	*Base
 	URL         string
 	MessageType string
-	log         log.Logger
+	log         log.MultiLoggers
 	tmpl        *template.Template
 }
 

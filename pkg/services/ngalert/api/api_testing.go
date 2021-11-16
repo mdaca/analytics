@@ -23,7 +23,7 @@ type TestingApiSrv struct {
 	Cfg             *setting.Cfg
 	DataService     *tsdb.Service
 	DatasourceCache datasources.CacheService
-	log             log.Logger
+	log             log.MultiLoggers
 }
 
 func (srv TestingApiSrv) RouteTestRuleConfig(c *models.ReqContext, body apimodels.TestRulePayload) response.Response {

@@ -84,7 +84,7 @@ type ClusterPeer interface {
 }
 
 type Alertmanager struct {
-	logger      log.Logger
+	logger      log.MultiLoggers
 	gokitLogger gokit_log.Logger
 
 	Settings  *setting.Cfg

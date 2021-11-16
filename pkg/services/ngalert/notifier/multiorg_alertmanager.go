@@ -33,7 +33,7 @@ type MultiOrgAlertmanager struct {
 	alertmanagers    map[int64]*Alertmanager
 
 	settings *setting.Cfg
-	logger   log.Logger
+	logger   log.MultiLoggers
 
 	// clusterPeer represents the clustering peers of Alertmanagers between Grafana instances.
 	peer         ClusterPeer
@@ -49,7 +49,7 @@ type MultiOrgAlertmanager struct {
 }
 
 func NewMultiOrgAlertmanager(cfg *setting.Cfg, configStore store.AlertingStore, orgStore store.OrgStore,
-	kvStore kvstore.KVStore, decryptFn channels.GetDecryptedValueFn, m *metrics.MultiOrgAlertmanager, l log.Logger,
+	kvStore kvstore.KVStore, decryptFn channels.GetDecryptedValueFn, m *metrics.MultiOrgAlertmanager, l log.MultiLoggers,
 ) (*MultiOrgAlertmanager, error) {
 	moa := &MultiOrgAlertmanager{
 		logger:        l,

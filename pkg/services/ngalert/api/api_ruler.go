@@ -26,7 +26,7 @@ type RulerSrv struct {
 	DatasourceCache datasources.CacheService
 	QuotaService    *quota.QuotaService
 	manager         *state.Manager
-	log             log.Logger
+	log             log.MultiLoggers
 }
 
 func (srv RulerSrv) RouteDeleteNamespaceRulesConfig(c *models.ReqContext) response.Response {

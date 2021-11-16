@@ -39,7 +39,7 @@ func newClientConfig(executablePath string, env []string, logger log.MultiLogger
 }
 
 // StartRendererFunc callback function called when a renderer plugin is started.
-type StartRendererFunc func(pluginID string, renderer pluginextensionv2.RendererPlugin, logger log.Logger) error
+type StartRendererFunc func(pluginID string, renderer pluginextensionv2.RendererPlugin, logger log.MultiLoggers) error
 
 // PluginDescriptor is a descriptor used for registering backend plugins.
 type PluginDescriptor struct {

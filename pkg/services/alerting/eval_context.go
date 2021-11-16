@@ -24,7 +24,7 @@ type EvalContext struct {
 	StartTime      time.Time
 	EndTime        time.Time
 	Rule           *Rule
-	Log            log.Logger
+	Log            log.MultiLoggers
 
 	dashboardRef *models.DashboardRef
 

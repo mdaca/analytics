@@ -13,7 +13,7 @@ type Base struct {
 	IsDefault             bool
 	DisableResolveMessage bool
 
-	log log.Logger
+	log log.MultiLoggers
 }
 
 func (n *Base) GetDisableResolveMessage() bool {

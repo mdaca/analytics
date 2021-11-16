@@ -20,7 +20,7 @@ import (
 type GoogleChatNotifier struct {
 	*Base
 	URL  string
-	log  log.Logger
+	log  log.MultiLoggers
 	tmpl *template.Template
 }
 
