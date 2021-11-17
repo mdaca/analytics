@@ -1,7 +1,7 @@
 load('scripts/drone/vault.star', 'from_secret', 'github_token', 'pull_secret', 'drone_token')
 
 grabpl_version = 'test-e2e-parallel'
-build_image = 'grafana/build-container:1.4.5'
+build_image = 'grafana/build-container:1.4.6'
 publish_image = 'grafana/grafana-ci-deploy:1.3.1'
 grafana_docker_image = 'grafana/drone-grafana-docker:0.3.2'
 deploy_docker_image = 'us.gcr.io/kubernetes-dev/drone/plugins/deploy-image'
@@ -330,17 +330,17 @@ def build_frontend_step(edition, ver_mode, is_downstream=False):
     # TODO: Use percentage for num jobs
     if ver_mode == 'release':
         cmds = [
-            './bin/grabpl build-frontend --jobs 8 --github-token $${GITHUB_TOKEN} --no-install-deps ' + \
+            './bin/grabpl build-frontend --jobs 24 --github-token $${GITHUB_TOKEN} --no-install-deps ' + \
                 '--edition {} --no-pull-enterprise ${{DRONE_TAG}}'.format(edition),
         ]
     elif ver_mode == 'test-release':
         cmds = [
-            './bin/grabpl build-frontend --jobs 8 --github-token $${GITHUB_TOKEN} --no-install-deps ' + \
+            './bin/grabpl build-frontend --jobs 24 --github-token $${GITHUB_TOKEN} --no-install-deps ' + \
                 '--edition {} --no-pull-enterprise {}'.format(edition, test_release_ver),
             ]
     else:
         cmds = [
-            './bin/grabpl build-frontend --jobs 8 --no-install-deps --edition {} '.format(edition) + \
+            './bin/grabpl build-frontend --jobs 24 --no-install-deps --edition {} '.format(edition) + \
                 '--build-id {} --no-pull-enterprise'.format(build_no),
         ]
 
