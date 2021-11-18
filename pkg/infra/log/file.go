@@ -21,6 +21,8 @@ import (
 // FileLogWriter implements LoggerInterface.
 // It writes messages by lines limit, file size limit, or time frequency.
 type FileLogWriter struct {
+	mw *MuxWriter
+
 	Format           Formatedlogger
 	Filename         string
 	Maxlines         int
@@ -38,49 +40,58 @@ type FileLogWriter struct {
 	Rotate    bool
 	startLock sync.Mutex
 	logger    log.Logger
+}
 
-	// an *os.File writer with locker.
+// an *os.File writer with locker.
+type MuxWriter struct {
 	sync.Mutex
 	fd *os.File
 }
 
-// write to os.File. here we need to implement the rotation.
-func (w *FileLogWriter) Write(b []byte) (int, error) {
-	w.docheck(len(b))
-	w.Lock()
-	defer w.Unlock()
-	return w.fd.Write(b)
+// write to os.File.
+func (l *MuxWriter) Write(b []byte) (int, error) {
+	l.Lock()
+	defer l.Unlock()
+	return l.fd.Write(b)
 }
 
 // set os.File in writer.
-func (w *FileLogWriter) setFD(fd *os.File) error {
-	if w.fd != nil {
-		if err := w.fd.Close(); err != nil && !errors.Is(err, os.ErrClosed) {
+func (l *MuxWriter) setFD(fd *os.File) error {
+	if l.fd != nil {
+		if err := l.fd.Close(); err != nil && !errors.Is(err, os.ErrClosed) {
 			return fmt.Errorf("closing old file in MuxWriter failed: %w", err)
 		}
 	}
 
-	w.fd = fd
+	l.fd = fd
 	return nil
 }
 
 // create a FileLogWriter returning as LoggerInterface.
 func NewFileWriter() *FileLogWriter {
-	w := new(FileLogWriter)
-	w.Filename = ""
-	w.Format = func(w io.Writer) log.Logger {
-		return log.NewLogfmtLogger(w)
+	w := &FileLogWriter{
+		Filename: "",
+		Format: func(w io.Writer) log.Logger {
+			return log.NewLogfmtLogger(w)
+		},
+		Maxlines: 1000000,
+		Maxsize:  1 << 28, // 256 MB
+		Daily:    true,
+		Maxdays:  7,
+		Rotate:   true,
 	}
-	w.Maxlines = 1000000
-	w.Maxsize = 1 << 28 // 256 MB
-	w.Daily = true
-	w.Maxdays = 7
-	w.Rotate = true
+	// use MuxWriter instead direct use os.File for lock write when rotate
+	w.mw = new(MuxWriter)
 	return w
 }
 
 func (w *FileLogWriter) Log(keyvals ...interface{}) error {
-	return w.logger.Log(keyvals)
+	if err := w.logger.Log(keyvals); err != nil {
+		return err
+	}
+	w.docheck(len(data))
+	_, err := w.mw.Write(data)
+	return err
 }
 
 func (w *FileLogWriter) Init() error {
@@ -90,7 +101,7 @@ func (w *FileLogWriter) Init() error {
 	if err := w.StartLogger(); err != nil {
 		return err
 	}
-	w.logger = log.NewLogfmtLogger(log.NewSyncWriter(w))
+	w.logger = log.NewLogfmtLogger(log.NewSyncWriter(w.mw))
 	return nil
 
 }
@@ -101,7 +112,7 @@ func (w *FileLogWriter) StartLogger() error {
 	if err != nil {
 		return err
 	}
-	if err := w.setFD(fd); err != nil {
+	if err := w.mw.setFD(fd); err != nil {
 		return err
 	}
 
@@ -158,7 +169,7 @@ func (w *FileLogWriter) lineCounter() (int, error) {
 }
 
 func (w *FileLogWriter) initFd() error {
-	fd := w.fd
+	fd := w.mw.fd
 	finfo, err := fd.Stat()
 	if err != nil {
 		return fmt.Errorf("get stat: %s", err)
@@ -195,10 +206,10 @@ func (w *FileLogWriter) DoRotate() error {
 		}
 
 		// block Logger's io.Writer
-		w.Lock()
-		defer w.Unlock()
+		w.mw.Lock()
+		defer w.mw.Unlock()
 
-		fd := w.fd
+		fd := w.mw.fd
 		if err := fd.Close(); err != nil {
 			return err
 		}
@@ -243,14 +254,14 @@ func (w *FileLogWriter) deleteOldLog() {
 
 // destroy file logger, close file writer.
 func (w *FileLogWriter) Close() error {
-	return w.fd.Close()
+	return w.mw.fd.Close()
 }
 
 // flush file logger.
 // there are no buffering messages in file logger in memory.
 // flush file means sync file from disk.
 func (w *FileLogWriter) Flush() {
-	if err := w.fd.Sync(); err != nil {
+	if err := w.mw.fd.Sync(); err != nil {
 		fmt.Fprintf(os.Stderr, "FileLogWriter(%q): %s\n", w.Filename, err)
 	}
 }
@@ -258,11 +269,11 @@ func (w *FileLogWriter) Flush() {
 // Reload file logger
 func (w *FileLogWriter) Reload() error {
 	// block Logger's io.Writer
-	w.Lock()
-	defer w.Unlock()
+	w.mw.Lock()
+	defer w.mw.Unlock()
 
 	// Close
-	fd := w.fd
+	fd := w.mw.fd
 	if err := fd.Close(); err != nil {
 		return err
 	}

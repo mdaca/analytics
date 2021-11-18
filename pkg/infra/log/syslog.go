@@ -4,6 +4,7 @@
 package log
 
 import (
+	"errors"
 	"log/syslog"
 	"os"
 
@@ -65,7 +66,7 @@ func NewSyslog(sec *ini.Section, format Formatedlogger) *SysLogHandler {
 		level.Error(llog).Log("Failed to init syslog log handler", "error", err)
 		os.Exit(1)
 	}
-	handler.logger = gokitsyslog.NewSyslogLogger(handler.syslog, format, gokitsyslog.PrioritySelectorOption(selector))
+	handler.logger := gokitsyslog.NewSyslogLogger(handler.syslog, format, gokitsyslog.PrioritySelectorOption(selector))
 	return handler
 }
 
@@ -110,5 +111,5 @@ var facilities = map[string]syslog.Priority{
 }
 
 func parseFacility(facility string) (syslog.Priority, error) {
-	return syslog.LOG_LOCAL0, nil
+		return syslog.LOG_LOCAL0, nil
 }

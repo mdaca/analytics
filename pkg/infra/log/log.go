@@ -316,7 +316,7 @@ func ReadLoggingConfig(modes []string, logsPath string, cfg *ini.File) error {
 		case "syslog":
 			sysLogHandler := NewSyslog(sec, format)
 			loggersToClose = append(loggersToClose, sysLogHandler)
-			handler.val = sysLogHandler
+			handler.val = sysLogHandler.logger
 		}
 		if handler.val == nil {
 			panic(fmt.Sprintf("Handler is uninitialized for mode %q", mode))
@@ -343,3 +343,25 @@ func ReadLoggingConfig(modes []string, logsPath string, cfg *ini.File) error {
 	}
 	return nil
 }
+
+// parsing the logger key then find the logger name, apply the dedicated level to the logger. info is lower than debug, we take the highest level.
+// the filters setting is overwritting the global configuration
+// func LogFilterHandler(maxLevel level.Option, filters map[string]level.Option, h LogWithFilters) LogWithFilters {
+// 	return log15.FilterHandler(func(r *log15.Record) (pass bool) {
+// 		if len(filters) > 0 {
+// 			for i := 0; i < len(r.Ctx); i += 2 {
+// 				key, ok := r.Ctx[i].(string)
+// 				if ok && key == "logger" {
+// 					loggerName, strOk := r.Ctx[i+1].(string)
+// 					if strOk {
+// 						if filterLevel, ok := filters[loggerName]; ok {
+// 							return r.Lvl <= filterLevel
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+
+// 		return r.Lvl <= maxLevel
+// 	}, h)
+// }

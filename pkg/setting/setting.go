@@ -1110,7 +1110,7 @@ func (cfg *Cfg) LogConfigSources() {
 
 type DynamicSection struct {
 	section *ini.Section
-	Logger  log.MultiLoggers
+	Logger  log.Logger
 }
 
 // Key dynamically overrides keys with environment variables.
