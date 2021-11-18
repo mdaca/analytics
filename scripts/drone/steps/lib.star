@@ -620,6 +620,7 @@ def install_cypress_step():
             ],
         'commands': [
             'CYPRESS_CACHE_FOLDER=/tmp/Cypress yarn run cypress install',
+            'ls -R /tmp/',
         ],
     }
 
@@ -637,6 +638,7 @@ def e2e_tests_step(suite, edition, port=3001, tries=None):
             'HOST': 'end-to-end-tests-server' + enterprise2_suffix(edition),
         },
         'commands': [
+            'ls -R /tmp/',
             cmd,
         ],
     }
