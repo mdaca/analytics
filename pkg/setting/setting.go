@@ -182,7 +182,7 @@ func AddChangePasswordLink() bool {
 // TODO move all global vars to this struct
 type Cfg struct {
 	Raw    *ini.File
-	Logger log.MultiLoggers
+	Logger log.Logger
 
 	// HTTP Server Settings
 	CertFile         string

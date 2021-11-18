@@ -68,11 +68,67 @@ func (ml MultiLoggers) Info(msg string, args ...interface{}) {
 	}
 }
 
-func New(logger string, ctx ...interface{}) MultiLoggers {
+func (ml MultiLoggers) Crit(msg string, args ...interface{}) {
+	for _, multilogger := range ml.loggers {
+		multilogger.val.Log(level.Key(), level.DebugValue(), "msg", msg, args)
+	}
+}
+
+func (ml MultiLoggers) Log(keyvals ...interface{}) error {
+	for _, multilogger := range ml.loggers {
+		if err := multilogger.val.Log(keyvals...); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// we need to implement new function for multiloggers
+func (ml MultiLoggers) New(ctx ...interface{}) MultiLoggers {
+	var newloger MultiLoggers
+	for _, logWithFilter := range ml.loggers {
+		logWithFilter.val = log.With(logWithFilter.val, ctx)
+		// v, ok := logWithFilter.filters[logger]
+		// if ok {
+		// 	logWithFilter.val = level.NewFilter(logWithFilter.val, v)
+		// } else {
+		// 	logWithFilter.val = level.NewFilter(logWithFilter.val, logWithFilter.maxLevel)
+		// }
+		newloger.loggers = append(newloger.loggers, logWithFilter)
+	}
+	return newloger
+}
+
+func (ml MultiLoggers) SetLevel(levelName string) {
+	for _, logWithFilter := range ml.loggers {
+		logWithFilter.maxLevel = getLogLevelFromString(levelName)
+		logWithFilter.val = level.NewFilter(logWithFilter.val, logWithFilter.maxLevel)
+	}
+}
+
+func (ml MultiLoggers) SetFilters(filters map[string]level.Option) {
+	for _, logWithFilter := range ml.loggers {
+		logWithFilter.filters = filters
+		for k, v := range filters {
+			if k == level.Key() {
+				continue
+			}
+			logWithFilter.val = level.NewFilter(logWithFilter.val, v)
+		}
+	}
+}
+
+func (ml MultiLoggers) SetFormat(format string) {
+	for _, logWithFilter := range ml.loggers {
+		logWithFilter.val = log.With(logWithFilter.val, "format", format)
+	}
+}
+
+func New(ctx ...interface{}) log.Logger {
 	var newloger MultiLoggers
 	for _, logWithFilter := range Root.loggers {
-		logWithFilter.val = log.With(logWithFilter.val, append([]interface{}{"logger", logger}, ctx...))
-		v, ok := logWithFilter.filters[logger]
+		logWithFilter.val = log.With(logWithFilter.val, append([]interface{}{"logger", ctx[0]}, ctx...))
+		v, ok := logWithFilter.filters[ctx[0].(string)]
 		if ok {
 			logWithFilter.val = level.NewFilter(logWithFilter.val, v)
 		} else {

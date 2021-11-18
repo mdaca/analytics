@@ -11,7 +11,7 @@ import (
 
 // kvStoreSQL provides a key/value store backed by the Grafana database
 type kvStoreSQL struct {
-	log      log.MultiLoggers
+	log      log.Logger
 	sqlStore *sqlstore.SQLStore
 }
 
