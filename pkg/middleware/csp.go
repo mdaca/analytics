@@ -15,7 +15,7 @@ import (
 )
 
 // AddCSPHeader adds the Content Security Policy header.
-func AddCSPHeader(cfg *setting.Cfg, logger log.MultiLoggers) func(http.Handler) http.Handler {
+func AddCSPHeader(cfg *setting.Cfg, logger log.Logger) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 			if !cfg.CSPEnabled {

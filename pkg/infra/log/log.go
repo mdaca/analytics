@@ -68,11 +68,11 @@ func (ml MultiLoggers) Info(msg string, args ...interface{}) {
 	}
 }
 
-func (ml MultiLoggers) Crit(msg string, args ...interface{}) {
-	for _, multilogger := range ml.loggers {
-		multilogger.val.Log(level.Key(), level.DebugValue(), "msg", msg, args)
-	}
-}
+// func (ml MultiLoggers) Crit(msg string, args ...interface{}) {
+// 	for _, multilogger := range ml.loggers {
+// 		multilogger.val.Log(level.Key(), level.DebugValue(), "msg", msg, args)
+// 	}
+// }
 
 func (ml MultiLoggers) Log(keyvals ...interface{}) error {
 	for _, multilogger := range ml.loggers {
@@ -88,12 +88,12 @@ func (ml MultiLoggers) New(ctx ...interface{}) MultiLoggers {
 	var newloger MultiLoggers
 	for _, logWithFilter := range ml.loggers {
 		logWithFilter.val = log.With(logWithFilter.val, ctx)
-		// v, ok := logWithFilter.filters[logger]
-		// if ok {
-		// 	logWithFilter.val = level.NewFilter(logWithFilter.val, v)
-		// } else {
-		// 	logWithFilter.val = level.NewFilter(logWithFilter.val, logWithFilter.maxLevel)
-		// }
+		v, ok := logWithFilter.filters[ctx[0].(string)]
+		if ok {
+			logWithFilter.val = level.NewFilter(logWithFilter.val, v)
+		} else {
+			logWithFilter.val = level.NewFilter(logWithFilter.val, logWithFilter.maxLevel)
+		}
 		newloger.loggers = append(newloger.loggers, logWithFilter)
 	}
 	return newloger
@@ -124,7 +124,10 @@ func (ml MultiLoggers) SetFormat(format string) {
 	}
 }
 
-func New(ctx ...interface{}) log.Logger {
+func New(ctx ...interface{}) MultiLoggers {
+	if len(ctx) == 0 {
+		return Root
+	}
 	var newloger MultiLoggers
 	for _, logWithFilter := range Root.loggers {
 		logWithFilter.val = log.With(logWithFilter.val, append([]interface{}{"logger", ctx[0]}, ctx...))

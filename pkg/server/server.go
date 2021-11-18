@@ -84,7 +84,7 @@ type Server struct {
 	context          context.Context
 	shutdownFn       context.CancelFunc
 	childRoutines    *errgroup.Group
-	log              log.MultiLoggers
+	log              log.Logger
 	cfg              *setting.Cfg
 	shutdownOnce     sync.Once
 	shutdownFinished chan struct{}
