@@ -147,7 +147,7 @@ func TestAlertmanagerNotifier_Notify(t *testing.T) {
 			t.Cleanup(func() {
 				sendHTTPRequest = origSendHTTPRequest
 			})
-			sendHTTPRequest = func(ctx context.Context, url *url.URL, cfg httpCfg, logger log.MultiLoggers) ([]byte, error) {
+			sendHTTPRequest = func(ctx context.Context, url *url.URL, cfg httpCfg, logger log.Logger) ([]byte, error) {
 				body = cfg.body
 				return nil, c.sendHTTPRequestError
 			}

@@ -31,7 +31,7 @@ type AlertmanagerSrv struct {
 	mam     *notifier.MultiOrgAlertmanager
 	secrets secrets.Service
 	store   store.AlertingStore
-	log     log.MultiLoggers
+	log     log.Logger
 }
 
 type UnknownReceiverError struct {

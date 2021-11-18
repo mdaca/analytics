@@ -17,7 +17,7 @@ type Service struct {
 	SQLStore       *sqlstore.SQLStore
 	SecretsService secrets.Service
 
-	logger                       log.MultiLoggers
+	logger                       log.Logger
 	pluginSettingDecryptionCache secureJSONDecryptionCache
 }
 

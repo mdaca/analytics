@@ -38,7 +38,7 @@ type UserAuthTokenService struct {
 	SQLStore          *sqlstore.SQLStore
 	ServerLockService *serverlock.ServerLockService
 	Cfg               *setting.Cfg
-	log               log.MultiLoggers
+	log               log.Logger
 }
 
 func (s *UserAuthTokenService) ActiveTokenCount(ctx context.Context) (int64, error) {

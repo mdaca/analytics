@@ -17,7 +17,7 @@ type DashAlertExtractor struct {
 	User  *models.SignedInUser
 	Dash  *models.Dashboard
 	OrgID int64
-	log   log.MultiLoggers
+	log   log.Logger
 }
 
 // NewDashAlertExtractor returns a new DashAlertExtractor.

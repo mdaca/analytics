@@ -11,7 +11,7 @@ import (
 )
 
 type logWrapper struct {
-	Logger glog.MultiLoggers
+	Logger glog.Logger
 
 	name        string
 	impliedArgs []interface{}

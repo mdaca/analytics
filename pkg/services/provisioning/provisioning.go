@@ -77,7 +77,7 @@ type ProvisioningServiceImpl struct {
 	SQLStore                *sqlstore.SQLStore
 	pluginStore             plugifaces.Store
 	EncryptionService       encryption.Service
-	log                     log.MultiLoggers
+	log                     log.Logger
 	pollingCtxCancel        context.CancelFunc
 	newDashboardProvisioner dashboards.DashboardProvisionerFactory
 	dashboardProvisioner    dashboards.DashboardProvisioner

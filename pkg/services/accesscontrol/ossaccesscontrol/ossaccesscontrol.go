@@ -28,7 +28,7 @@ func ProvideService(cfg *setting.Cfg, usageStats usagestats.Service) *OSSAccessC
 type OSSAccessControlService struct {
 	Cfg           *setting.Cfg
 	UsageStats    usagestats.Service
-	Log           log.MultiLoggers
+	Log           log.Logger
 	registrations accesscontrol.RegistrationList
 	scopeResolver accesscontrol.ScopeResolver
 }

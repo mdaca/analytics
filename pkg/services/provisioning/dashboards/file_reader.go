@@ -31,7 +31,7 @@ var (
 type FileReader struct {
 	Cfg                          *config
 	Path                         string
-	log                          log.MultiLoggers
+	log                          log.Logger
 	dashboardProvisioningService dashboards.DashboardProvisioningService
 	FoldersFromFilesStructure    bool
 
@@ -41,7 +41,7 @@ type FileReader struct {
 }
 
 // NewDashboardFileReader returns a new filereader based on `config`
-func NewDashboardFileReader(cfg *config, log log.MultiLoggers, store dboards.Store) (*FileReader, error) {
+func NewDashboardFileReader(cfg *config, log log.Logger, store dboards.Store) (*FileReader, error) {
 	var path string
 	path, ok := cfg.Options["path"].(string)
 	if !ok {

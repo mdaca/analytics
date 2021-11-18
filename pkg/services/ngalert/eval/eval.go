@@ -23,7 +23,7 @@ import (
 
 type Evaluator struct {
 	Cfg *setting.Cfg
-	Log log.MultiLoggers
+	Log log.Logger
 }
 
 // invalidEvalResultFormatError is an error for invalid format of the alert definition evaluation results.
@@ -111,7 +111,7 @@ func (s State) String() string {
 type AlertExecCtx struct {
 	OrgID              int64
 	ExpressionsEnabled bool
-	Log                log.MultiLoggers
+	Log                log.Logger
 
 	Ctx context.Context
 }

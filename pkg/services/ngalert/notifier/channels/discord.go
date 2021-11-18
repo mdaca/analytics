@@ -18,7 +18,7 @@ import (
 
 type DiscordNotifier struct {
 	*Base
-	log                log.MultiLoggers
+	log                log.Logger
 	tmpl               *template.Template
 	Content            string
 	AvatarURL          string

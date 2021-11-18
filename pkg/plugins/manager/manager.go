@@ -49,7 +49,7 @@ type PluginManager struct {
 	pluginInstaller  plugins.Installer
 	pluginLoader     plugins.Loader
 	pluginsMu        sync.RWMutex
-	log              log.MultiLoggers
+	log              log.Logger
 }
 
 func ProvideService(cfg *setting.Cfg, requestValidator models.PluginRequestValidator, pluginLoader plugins.Loader,

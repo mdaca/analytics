@@ -9,12 +9,12 @@ import (
 )
 
 type XormLogger struct {
-	grafanaLog glog.MultiLoggers
+	grafanaLog glog.Logger
 	level      glog.Lvl
 	showSQL    bool
 }
 
-func NewXormLogger(level glog.Lvl, grafanaLog glog.MultiLoggers) *XormLogger {
+func NewXormLogger(level glog.Lvl, grafanaLog glog.Logger) *XormLogger {
 	return &XormLogger{
 		grafanaLog: grafanaLog,
 		level:      level,

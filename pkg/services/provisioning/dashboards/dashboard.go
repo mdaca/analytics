@@ -27,7 +27,7 @@ type DashboardProvisionerFactory func(context.Context, string, dashboards.Store)
 
 // Provisioner is responsible for syncing dashboard from disk to Grafana's database.
 type Provisioner struct {
-	log                log.MultiLoggers
+	log                log.Logger
 	fileReaders        []*FileReader
 	configs            []*config
 	duplicateValidator duplicateValidator
@@ -120,7 +120,7 @@ func (provider *Provisioner) GetAllowUIUpdatesFromConfig(name string) bool {
 	return false
 }
 
-func getFileReaders(configs []*config, logger log.MultiLoggers, store dashboards.Store) ([]*FileReader, error) {
+func getFileReaders(configs []*config, logger log.Logger, store dashboards.Store) ([]*FileReader, error) {
 	var readers []*FileReader
 
 	for _, config := range configs {

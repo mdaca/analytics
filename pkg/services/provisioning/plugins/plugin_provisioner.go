@@ -23,7 +23,7 @@ func Provision(configDirectory string, pluginStore plugins.Store) error {
 // PluginProvisioner is responsible for provisioning apps based on
 // configuration read by the `configReader`
 type PluginProvisioner struct {
-	log         log.MultiLoggers
+	log         log.Logger
 	cfgProvider configReader
 }
 

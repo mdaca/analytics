@@ -25,7 +25,7 @@ import (
 // alert notification to Slack.
 type SlackNotifier struct {
 	*Base
-	log  log.MultiLoggers
+	log  log.Logger
 	tmpl *template.Template
 
 	URL            *url.URL

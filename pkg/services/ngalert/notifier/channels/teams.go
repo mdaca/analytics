@@ -20,7 +20,7 @@ type TeamsNotifier struct {
 	URL     string
 	Message string
 	tmpl    *template.Template
-	log     log.MultiLoggers
+	log     log.Logger
 }
 
 // NewTeamsNotifier is the constructor for Teams notifier.

@@ -18,12 +18,12 @@ import (
 type cache struct {
 	states      map[int64]map[string]map[string]*State // orgID > alertRuleUID > stateID > state
 	mtxStates   sync.RWMutex
-	log         log.MultiLoggers
+	log         log.Logger
 	metrics     *metrics.State
 	externalURL *url.URL
 }
 
-func newCache(logger log.MultiLoggers, metrics *metrics.State, externalURL *url.URL) *cache {
+func newCache(logger log.Logger, metrics *metrics.State, externalURL *url.URL) *cache {
 	return &cache{
 		states:      make(map[int64]map[string]map[string]*State),
 		log:         logger,

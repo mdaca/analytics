@@ -37,7 +37,7 @@ type OpsgenieNotifier struct {
 	OverridePriority bool
 	SendTagsAs       string
 	tmpl             *template.Template
-	log              log.MultiLoggers
+	log              log.Logger
 }
 
 // NewOpsgenieNotifier is the constructor for the Opsgenie notifier

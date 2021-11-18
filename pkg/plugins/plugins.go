@@ -42,7 +42,7 @@ type Plugin struct {
 
 	Renderer pluginextensionv2.RendererPlugin
 	client   backendplugin.Plugin
-	log      log.MultiLoggers
+	log      log.Logger
 }
 
 // JSONData represents the plugin's plugin.json
@@ -126,11 +126,11 @@ func (p *Plugin) PluginID() string {
 	return p.ID
 }
 
-func (p *Plugin) Logger() log.MultiLoggers {
+func (p *Plugin) Logger() log.Logger {
 	return p.log
 }
 
-func (p *Plugin) SetLogger(l log.MultiLoggers) {
+func (p *Plugin) SetLogger(l log.Logger) {
 	p.log = l
 }
 

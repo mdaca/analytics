@@ -19,7 +19,7 @@ type Implementation struct {
 	SQLStore              *sqlstore.SQLStore
 	UserProtectionService login.UserProtectionService
 	SecretsService        secrets.Service
-	logger                log.MultiLoggers
+	logger                log.Logger
 }
 
 func ProvideAuthInfoService(bus bus.Bus, store *sqlstore.SQLStore, userProtectionService login.UserProtectionService,

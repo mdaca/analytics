@@ -15,7 +15,7 @@ import (
 )
 
 type configReader struct {
-	log log.MultiLoggers
+	log log.Logger
 }
 
 func (cr *configReader) readConfig(ctx context.Context, path string) ([]*configs, error) {

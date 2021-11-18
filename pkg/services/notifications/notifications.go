@@ -70,7 +70,7 @@ type NotificationService struct {
 
 	mailQueue    chan *Message
 	webhookQueue chan *Webhook
-	log          log.MultiLoggers
+	log          log.Logger
 }
 
 func (ns *NotificationService) Run(ctx context.Context) error {

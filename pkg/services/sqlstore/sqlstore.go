@@ -33,7 +33,7 @@ var (
 	x       *xorm.Engine
 	dialect migrator.Dialect
 
-	sqlog log.MultiLoggers = log.New("sqlstore")
+	sqlog log.Logger = log.New("sqlstore")
 )
 
 // ContextSessionKey is used as key to save values in `context.Context`
@@ -46,7 +46,7 @@ type SQLStore struct {
 
 	dbCfg                       DatabaseConfig
 	engine                      *xorm.Engine
-	log                         log.MultiLoggers
+	log                         log.Logger
 	Dialect                     migrator.Dialect
 	skipEnsureDefaultOrgAndUser bool
 	migrations                  registry.DatabaseMigrator

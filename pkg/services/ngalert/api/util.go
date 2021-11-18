@@ -223,7 +223,7 @@ func validateQueriesAndExpressions(data []ngmodels.AlertQuery, user *models.Sign
 	return refIDs, nil
 }
 
-func conditionEval(c *models.ReqContext, cmd ngmodels.EvalAlertConditionCommand, datasourceCache datasources.CacheService, dataService *tsdb.Service, cfg *setting.Cfg, log log.MultiLoggers) response.Response {
+func conditionEval(c *models.ReqContext, cmd ngmodels.EvalAlertConditionCommand, datasourceCache datasources.CacheService, dataService *tsdb.Service, cfg *setting.Cfg, log log.Logger) response.Response {
 	evalCond := ngmodels.Condition{
 		Condition: cmd.Condition,
 		OrgID:     c.SignedInUser.OrgId,

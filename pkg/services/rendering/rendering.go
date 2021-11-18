@@ -36,7 +36,7 @@ type RenderUser struct {
 }
 
 type RenderingService struct {
-	log             log.MultiLoggers
+	log             log.Logger
 	pluginInfo      *plugins.Plugin
 	renderAction    renderFunc
 	renderCSVAction renderCSVFunc

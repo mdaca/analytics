@@ -25,7 +25,7 @@ type FileStore struct {
 	kv             *kvstore.NamespacedKVStore
 	orgID          int64
 	workingDirPath string
-	logger         log.MultiLoggers
+	logger         log.Logger
 }
 
 func NewFileStore(orgID int64, store kvstore.KVStore, workingDirPath string) *FileStore {

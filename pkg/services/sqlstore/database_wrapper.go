@@ -60,7 +60,7 @@ func WrapDatabaseDriverWithHooks(dbType string) string {
 // databaseQueryWrapper satisfies the sqlhook.databaseQueryWrapper interface
 // which allow us to wrap all SQL queries with a `Before` & `After` hook.
 type databaseQueryWrapper struct {
-	log log.MultiLoggers
+	log log.Logger
 }
 
 // databaseQueryWrapperKey is used as key to save values in `context.Context`

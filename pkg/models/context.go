@@ -18,7 +18,7 @@ type ReqContext struct {
 	IsRenderCall   bool
 	AllowAnonymous bool
 	SkipCache      bool
-	Logger         log.MultiLoggers
+	Logger         log.Logger
 	// RequestNonce is a cryptographic request identifier for use with Content Security Policy.
 	RequestNonce string
 

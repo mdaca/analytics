@@ -24,7 +24,7 @@ type TelegramNotifier struct {
 	BotToken string
 	ChatID   string
 	Message  string
-	log      log.MultiLoggers
+	log      log.Logger
 	tmpl     *template.Template
 }
 

@@ -48,11 +48,11 @@ func (d *duplicateEntries) InvolvedReaders() map[string]struct{} {
 }
 
 type duplicateValidator struct {
-	logger  log.MultiLoggers
+	logger  log.Logger
 	readers []*FileReader
 }
 
-func newDuplicateValidator(logger log.MultiLoggers, readers []*FileReader) duplicateValidator {
+func newDuplicateValidator(logger log.Logger, readers []*FileReader) duplicateValidator {
 	return duplicateValidator{logger: logger, readers: readers}
 }
 

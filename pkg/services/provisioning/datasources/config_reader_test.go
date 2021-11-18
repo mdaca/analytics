@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	logger log.MultiLoggers = log.New("fake.log")
+	logger log.Logger = log.New("fake.log")
 
 	twoDatasourcesConfig            = "testdata/two-datasources"
 	twoDatasourcesConfigPurgeOthers = "testdata/insert-two-delete-two"

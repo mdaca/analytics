@@ -21,11 +21,11 @@ var dsTypeToRulerPrefix = map[string]string{
 }
 
 type LotexRuler struct {
-	log log.MultiLoggers
+	log log.Logger
 	*AlertingProxy
 }
 
-func NewLotexRuler(proxy *AlertingProxy, log log.MultiLoggers) *LotexRuler {
+func NewLotexRuler(proxy *AlertingProxy, log log.Logger) *LotexRuler {
 	return &LotexRuler{
 		log:           log,
 		AlertingProxy: proxy,

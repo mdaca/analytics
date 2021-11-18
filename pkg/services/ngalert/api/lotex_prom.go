@@ -26,11 +26,11 @@ var dsTypeToLotexRoutes = map[string]promEndpoints{
 }
 
 type LotexProm struct {
-	log log.MultiLoggers
+	log log.Logger
 	*AlertingProxy
 }
 
-func NewLotexProm(proxy *AlertingProxy, log log.MultiLoggers) *LotexProm {
+func NewLotexProm(proxy *AlertingProxy, log log.Logger) *LotexProm {
 	return &LotexProm{
 		log:           log,
 		AlertingProxy: proxy,
