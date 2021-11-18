@@ -43,7 +43,7 @@ type TracingService struct {
 	samplerType              string
 	samplerParam             float64
 	samplingServerURL        string
-	log                      log.MultiLoggers
+	log                      log.Logger
 	closer                   io.Closer
 	zipkinPropagation        bool
 	disableSharedZipkinSpans bool

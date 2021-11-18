@@ -26,7 +26,7 @@ type ThreemaNotifier struct {
 	GatewayID   string
 	RecipientID string
 	APISecret   string
-	log         log.MultiLoggers
+	log         log.Logger
 	tmpl        *template.Template
 }
 

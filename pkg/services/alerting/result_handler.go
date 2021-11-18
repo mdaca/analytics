@@ -21,7 +21,7 @@ type resultHandler interface {
 
 type defaultResultHandler struct {
 	notifier *notificationService
-	log      log.MultiLoggers
+	log      log.Logger
 }
 
 func newResultHandler(renderService rendering.Service, decryptFn GetDecryptedValueFn) *defaultResultHandler {

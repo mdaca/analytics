@@ -49,7 +49,7 @@ type Bus interface {
 
 // InProcBus defines the bus structure
 type InProcBus struct {
-	logger          log.MultiLoggers
+	logger          log.Logger
 	handlers        map[string]HandlerFunc
 	handlersWithCtx map[string]HandlerFunc
 	listeners       map[string][]HandlerFunc

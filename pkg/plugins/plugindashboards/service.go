@@ -28,7 +28,7 @@ type Service struct {
 	pluginStore            plugins.Store
 	pluginDashboardManager plugins.PluginDashboardManager
 
-	logger log.MultiLoggers
+	logger log.Logger
 }
 
 func (s *Service) updateAppDashboards() {

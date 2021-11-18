@@ -105,7 +105,7 @@ type SensuGoNotifier struct {
 	Namespace string
 	Handler   string
 	APIKey    string
-	log       log.MultiLoggers
+	log       log.Logger
 }
 
 // Notify send alert notification to Sensu Go

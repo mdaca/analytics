@@ -26,7 +26,7 @@ type clientV2 struct {
 	pluginextensionv2.RendererPlugin
 }
 
-func newClientV2(descriptor PluginDescriptor, logger log.MultiLoggers, rpcClient plugin.ClientProtocol) (pluginClient, error) {
+func newClientV2(descriptor PluginDescriptor, logger log.Logger, rpcClient plugin.ClientProtocol) (pluginClient, error) {
 	rawDiagnostics, err := rpcClient.Dispense("diagnostics")
 	if err != nil {
 		return nil, err

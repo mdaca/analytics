@@ -404,7 +404,7 @@ func (sn *SlackNotifier) sendRequest(ctx context.Context, data []byte) error {
 	return fmt.Errorf("request to Slack API failed with status code %d", resp.StatusCode)
 }
 
-func (sn *SlackNotifier) slackFileUpload(evalContext *alerting.EvalContext, log log.MultiLoggers, recipient, token string) error {
+func (sn *SlackNotifier) slackFileUpload(evalContext *alerting.EvalContext, log log.Logger, recipient, token string) error {
 	if evalContext.ImageOnDiskPath == "" {
 		// nolint:gosec
 		// We can ignore the gosec G304 warning on this one because `setting.HomePath` comes from Grafana's configuration file.

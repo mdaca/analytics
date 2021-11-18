@@ -8,10 +8,10 @@ import (
 	"github.com/grafana/grafana/pkg/setting"
 )
 
-var metricsLogger log.MultiLoggers = log.New("metrics")
+var metricsLogger log.Logger = log.New("metrics")
 
 type logWrapper struct {
-	logger log.MultiLoggers
+	logger log.Logger
 }
 
 func (lw *logWrapper) Println(v ...interface{}) {

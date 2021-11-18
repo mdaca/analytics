@@ -11,7 +11,7 @@ import (
 
 type schedulerImpl struct {
 	jobs map[int64]*Job
-	log  log.MultiLoggers
+	log  log.Logger
 }
 
 func newScheduler() scheduler {

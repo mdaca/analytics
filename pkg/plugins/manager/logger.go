@@ -7,7 +7,8 @@ import (
 )
 
 type InfraLogWrapper struct {
-	l         log.MultiLoggers
+	l log.Logger
+
 	debugMode bool
 }
 

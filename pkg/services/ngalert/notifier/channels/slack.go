@@ -181,7 +181,7 @@ func (sn *SlackNotifier) Notify(ctx context.Context, as ...*types.Alert) (bool, 
 
 // sendSlackRequest sends a request to the Slack API.
 // Stubbable by tests.
-var sendSlackRequest = func(request *http.Request, logger log.MultiLoggers) error {
+var sendSlackRequest = func(request *http.Request, logger log.Logger) error {
 	netTransport := &http.Transport{
 		TLSClientConfig: &tls.Config{
 			Renegotiation: tls.RenegotiateFreelyAsClient,

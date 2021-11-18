@@ -12,7 +12,7 @@ import (
 
 // DefaultEvalHandler is responsible for evaluating the alert rule.
 type DefaultEvalHandler struct {
-	log             log.MultiLoggers
+	log             log.Logger
 	alertJobTimeout time.Duration
 	requestHandler  plugins.DataRequestHandler
 }

@@ -30,7 +30,7 @@ type S3Uploader struct {
 	secretKey       string
 	accessKey       string
 	pathStyleAccess bool
-	log             log.MultiLoggers
+	log             log.Logger
 }
 
 func NewS3Uploader(endpoint, region, bucket, path, acl, accessKey, secretKey string, pathStyleAccess bool) *S3Uploader {

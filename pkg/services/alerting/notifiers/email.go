@@ -43,7 +43,7 @@ type EmailNotifier struct {
 	NotifierBase
 	Addresses   []string
 	SingleEmail bool
-	log         log.MultiLoggers
+	log         log.Logger
 }
 
 // NewEmailNotifier is the constructor function

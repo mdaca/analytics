@@ -18,7 +18,7 @@ import (
 )
 
 type testLogger struct {
-	log.MultiLoggers
+	log.Logger
 	warnCalled  bool
 	warnMessage string
 }

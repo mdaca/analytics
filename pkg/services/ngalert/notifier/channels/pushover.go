@@ -35,7 +35,7 @@ type PushoverNotifier struct {
 	Upload           bool
 	Message          string
 	tmpl             *template.Template
-	log              log.MultiLoggers
+	log              log.Logger
 }
 
 // NewSlackNotifier is the constructor for the Slack notifier

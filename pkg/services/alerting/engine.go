@@ -36,7 +36,7 @@ type AlertEngine struct {
 	scheduler         scheduler
 	evalHandler       evalHandler
 	ruleReader        ruleReader
-	log               log.MultiLoggers
+	log               log.Logger
 	resultHandler     resultHandler
 	usageStatsService usagestats.Service
 }

@@ -83,7 +83,7 @@ type DiscordNotifier struct {
 	Content            string
 	AvatarURL          string
 	WebhookURL         string
-	log                log.MultiLoggers
+	log                log.Logger
 	UseDiscordUsername bool
 }
 

@@ -31,7 +31,7 @@ const (
 
 // Sender is responsible for dispatching alert notifications to an external Alertmanager service.
 type Sender struct {
-	logger      log.MultiLoggers
+	logger      log.Logger
 	gokitLogger gokit_log.Logger
 	wg          sync.WaitGroup
 
