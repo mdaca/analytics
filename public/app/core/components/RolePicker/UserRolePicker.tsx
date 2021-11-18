@@ -10,6 +10,7 @@ export interface Props {
   onBuiltinRoleChange: (newRole: OrgRole) => void;
   getRoleOptions?: () => Promise<Role[]>;
   getBuiltinRoles?: () => Promise<{ [key: string]: Role[] }>;
+  getRoles?: () => Promise<Role[]>;
   disabled?: boolean;
 }
 
@@ -20,6 +21,7 @@ export const UserRolePicker: FC<Props> = ({
   onBuiltinRoleChange,
   getRoleOptions,
   getBuiltinRoles,
+  getRoles,
   disabled,
 }) => {
   return (
@@ -28,7 +30,7 @@ export const UserRolePicker: FC<Props> = ({
       onRolesChange={(roles) => updateUserRoles(roles, userId, orgId)}
       onBuiltinRoleChange={onBuiltinRoleChange}
       getRoleOptions={() => (getRoleOptions ? getRoleOptions() : fetchRoleOptions(orgId))}
-      getRoles={() => fetchUserRoles(userId, orgId)}
+      getRoles={() => (getRoles ? getRoles() : fetchUserRoles(userId, orgId))}
       getBuiltinRoles={() => (getBuiltinRoles ? getBuiltinRoles() : fetchBuiltinRoles(orgId))}
       disabled={disabled}
     />
@@ -60,11 +62,16 @@ export const fetchUserRoles = async (userId: number, orgId?: number): Promise<Ro
   if (orgId) {
     userRolesUrl += `?targetOrgId=${orgId}`;
   }
-  const roles = await getBackendSrv().get(userRolesUrl);
-  if (!roles || !roles.length) {
+  try {
+    const roles = await getBackendSrv().get(userRolesUrl);
+    if (!roles || !roles.length) {
+      return [];
+    }
+    return roles;
+  } catch (error) {
+    error.isHandled = true;
     return [];
   }
-  return roles;
 };
 
 export const updateUserRoles = (roleUids: string[], userId: number, orgId?: number) => {
