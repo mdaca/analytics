@@ -36,12 +36,12 @@ type datasourceCacheManager struct {
 }
 
 type tlsManager struct {
-	logger          log.MultiLoggers
+	logger          log.Logger
 	dsCacheInstance datasourceCacheManager
 	dataPath        string
 }
 
-func newTLSManager(logger log.MultiLoggers, dataPath string) tlsSettingsProvider {
+func newTLSManager(logger log.Logger, dataPath string) tlsSettingsProvider {
 	return &tlsManager{
 		logger:          logger,
 		dataPath:        dataPath,
@@ -118,7 +118,7 @@ func getFileName(dataDir string, fileType certFileType) string {
 }
 
 // writeCertFile writes a certificate file.
-func writeCertFile(logger log.MultiLoggers, fileContent string, generatedFilePath string) error {
+func writeCertFile(logger log.Logger, fileContent string, generatedFilePath string) error {
 	fileContent = strings.TrimSpace(fileContent)
 	if fileContent != "" {
 		logger.Debug("Writing cert file", "path", generatedFilePath)

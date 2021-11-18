@@ -19,10 +19,10 @@ var restrictedRegExp = regexp.MustCompile(`(?im)([\s]*show[\s]+grants|[\s,]sessi
 
 type mySQLMacroEngine struct {
 	*sqleng.SQLMacroEngineBase
-	logger log.MultiLoggers
+	logger log.Logger
 }
 
-func newMysqlMacroEngine(logger log.MultiLoggers) sqleng.SQLMacroEngine {
+func newMysqlMacroEngine(logger log.Logger) sqleng.SQLMacroEngine {
 	return &mySQLMacroEngine{SQLMacroEngineBase: sqleng.NewSQLMacroEngineBase(), logger: logger}
 }
 

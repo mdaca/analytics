@@ -77,7 +77,7 @@ type AlertNG struct {
 	QuotaService    *quota.QuotaService
 	SecretsService  secrets.Service
 	Metrics         *metrics.NGAlert
-	Log             log.MultiLoggers
+	Log             log.Logger
 	schedule        schedule.ScheduleService
 	stateManager    *state.Manager
 

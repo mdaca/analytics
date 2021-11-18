@@ -28,7 +28,7 @@ type AzureBlobUploader struct {
 	account_name   string
 	account_key    string
 	container_name string
-	log            log.MultiLoggers
+	log            log.Logger
 }
 
 func NewAzureBlobUploader(account_name string, account_key string, container_name string) *AzureBlobUploader {

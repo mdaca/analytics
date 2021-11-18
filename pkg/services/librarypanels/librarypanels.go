@@ -40,7 +40,7 @@ type LibraryPanelService struct {
 	SQLStore              *sqlstore.SQLStore
 	RouteRegister         routing.RouteRegister
 	LibraryElementService libraryelements.Service
-	log                   log.MultiLoggers
+	log                   log.Logger
 }
 
 // LoadLibraryPanelsForDashboard loops through all panels in dashboard JSON and replaces any library panel JSON

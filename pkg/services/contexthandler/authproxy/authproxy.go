@@ -168,7 +168,7 @@ func (auth *AuthProxy) getKey() (string, error) {
 }
 
 // Login logs in user ID by whatever means possible.
-func (auth *AuthProxy) Login(logger log.MultiLoggers, ignoreCache bool) (int64, error) {
+func (auth *AuthProxy) Login(logger log.Logger, ignoreCache bool) (int64, error) {
 	if !ignoreCache {
 		// Error here means absent cache - we don't need to handle that
 		id, err := auth.GetUserViaCache(logger)
@@ -198,7 +198,7 @@ func (auth *AuthProxy) Login(logger log.MultiLoggers, ignoreCache bool) (int64, 
 }
 
 // GetUserViaCache gets user ID from cache.
-func (auth *AuthProxy) GetUserViaCache(logger log.MultiLoggers) (int64, error) {
+func (auth *AuthProxy) GetUserViaCache(logger log.Logger) (int64, error) {
 	cacheKey, err := auth.getKey()
 	if err != nil {
 		return 0, err
@@ -215,7 +215,7 @@ func (auth *AuthProxy) GetUserViaCache(logger log.MultiLoggers) (int64, error) {
 }
 
 // RemoveUserFromCache removes user from cache.
-func (auth *AuthProxy) RemoveUserFromCache(logger log.MultiLoggers) error {
+func (auth *AuthProxy) RemoveUserFromCache(logger log.Logger) error {
 	cacheKey, err := auth.getKey()
 	if err != nil {
 		return err

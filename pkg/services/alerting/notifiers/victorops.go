@@ -72,7 +72,7 @@ type VictoropsNotifier struct {
 	URL             string
 	NoDataAlertType string
 	AutoResolve     bool
-	log             log.MultiLoggers
+	log             log.Logger
 }
 
 func (vn *VictoropsNotifier) buildEventPayload(evalContext *alerting.EvalContext) (*simplejson.Json, error) {

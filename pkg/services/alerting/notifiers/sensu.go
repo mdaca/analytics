@@ -87,7 +87,7 @@ type SensuNotifier struct {
 	User     string
 	Password string
 	Handler  string
-	log      log.MultiLoggers
+	log      log.Logger
 }
 
 // Notify send alert notification to Sensu

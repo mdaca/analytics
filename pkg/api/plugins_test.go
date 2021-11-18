@@ -163,7 +163,7 @@ func callGetPluginAsset(sc *scenarioContext) {
 }
 
 func pluginAssetScenario(t *testing.T, desc string, url string, urlPattern string, pluginStore plugins.Store,
-	logger log.MultiLoggers, fn scenarioFunc) {
+	logger log.Logger, fn scenarioFunc) {
 	t.Run(fmt.Sprintf("%s %s", desc, url), func(t *testing.T) {
 		defer bus.ClearBusHandlers()
 
@@ -196,7 +196,8 @@ func (pm *pluginStore) Plugin(id string) *plugins.Plugin {
 }
 
 type logger struct {
-	log.MultiLoggers
+	log.Logger
+
 	warnings []string
 }
 

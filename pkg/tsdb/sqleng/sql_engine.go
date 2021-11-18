@@ -89,7 +89,7 @@ type DataSourceHandler struct {
 	engine                 *xorm.Engine
 	timeColumnNames        []string
 	metricColumnTypes      []string
-	log                    log.MultiLoggers
+	log                    log.Logger
 	dsInfo                 DataSourceInfo
 	rowLimit               int64
 }
@@ -117,7 +117,7 @@ func (e *DataSourceHandler) transformQueryError(err error) error {
 }
 
 func NewQueryDataHandler(config DataPluginConfiguration, queryResultTransformer SqlQueryResultTransformer,
-	macroEngine SQLMacroEngine, log log.MultiLoggers) (*DataSourceHandler, error) {
+	macroEngine SQLMacroEngine, log log.Logger) (*DataSourceHandler, error) {
 	log.Debug("Creating engine...")
 	defer func() {
 		log.Debug("Engine created")

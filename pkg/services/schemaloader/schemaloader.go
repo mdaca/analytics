@@ -40,7 +40,7 @@ func ProvideService(cfg *setting.Cfg) (*SchemaLoaderService, error) {
 }
 
 type SchemaLoaderService struct {
-	log        log.MultiLoggers
+	log        log.Logger
 	DashFamily schema.VersionedCueSchema
 	Cfg        *setting.Cfg
 }

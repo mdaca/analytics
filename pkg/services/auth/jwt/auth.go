@@ -52,7 +52,7 @@ type AuthService struct {
 	RemoteCache *remotecache.RemoteCache
 
 	keySet           keySet
-	log              log.MultiLoggers
+	log              log.Logger
 	expect           map[string]interface{}
 	expectRegistered jwt.Expected
 }

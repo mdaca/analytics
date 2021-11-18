@@ -178,7 +178,7 @@ func (s *Service) generateConnectionString(dsInfo sqleng.DataSourceInfo) (string
 }
 
 type postgresQueryResultTransformer struct {
-	log log.MultiLoggers
+	log log.Logger
 }
 
 func (t *postgresQueryResultTransformer) TransformQueryError(err error) error {

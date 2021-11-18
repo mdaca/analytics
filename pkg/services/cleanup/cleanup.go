@@ -30,7 +30,7 @@ func ProvideService(cfg *setting.Cfg, serverLockService *serverlock.ServerLockSe
 }
 
 type CleanUpService struct {
-	log               log.MultiLoggers
+	log               log.Logger
 	Cfg               *setting.Cfg
 	ServerLockService *serverlock.ServerLockService
 	ShortURLService   shorturls.Service
